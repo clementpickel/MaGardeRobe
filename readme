@@ -1,0 +1,13 @@
+Prérequis:
+    server:
+        installer python3, tensorflow, numpy, PIL, flask
+
+    mobile:
+        react native expo
+
+Start:
+    server:
+        python3 server/main.py
+
+    mobile
+        npx expo start

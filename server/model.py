@@ -2,7 +2,6 @@ import tensorflow as tf
 from tensorflow import keras
 
 import numpy as np
-# import matplotlib.pyplot as plt
 
 def train_model():
     print("tensorflw version:", tf.__version__)
