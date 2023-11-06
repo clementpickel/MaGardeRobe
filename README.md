@@ -30,5 +30,6 @@
 
 2. Lancez votre application mobile en utilisant la commande suivante :
     ```bash
+    cd mobile
     npx expo start
     ```
