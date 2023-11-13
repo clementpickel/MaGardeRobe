@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button, Image, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, ScrollView, TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import axios from 'axios';
 import { initDatabase, insertImage, deleteAllImages } from './Database';
@@ -10,6 +10,7 @@ import ImageSquareButton  from './ImageSquareButton';
 export default function Home() {
   const [image, setImage] = useState(null);
   const navigation = useNavigation();
+  const [ip, setIp] = useState("http://192.168.0.11:5000")
 
   useEffect(() => {
     initDatabase();
@@ -34,7 +35,8 @@ export default function Home() {
 
   const uploadImage = async () => {
     imageUri = image
-    const url = 'http://192.168.0.11:5000/upload';
+    const url = `${ip}/upload`;
+    console.log(url)
     const imageUriParts = imageUri.split('.');
     const fileType = imageUriParts[imageUriParts.length - 1];
   
@@ -110,11 +112,19 @@ export default function Home() {
               <SquareButtonWithIcon onPress={() => navigation.navigate("Image", { category:8 })} imageName={"bag"}/>
               <SquareButtonWithIcon onPress={() => navigation.navigate("Image", { category:9 })} imageName={"ankeboot"}/>
             </View>
+            
             <TouchableOpacity onPress={deleteAllImages} style={styles.buttonContainer}>
               <View style={styles.iconContainer}>
                 <Text style={{fontWeight: 'bold'}}>Supprimer toutes les images</Text>
               </View>
             </TouchableOpacity>
+            <View style={styles.buttonContainer}>
+              <TextInput
+              onChangeText={(value) => setIp(value)}
+              value={ip}
+              style={{fontWeight: 'bold'}}
+              />
+            </View>
             {/* {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
             <Button title="Take a picture" onPress={pickImage} />
             <Button title="Pick an image from camera roll" onPress={pickImageFromCameraRoll} />

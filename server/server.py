@@ -6,11 +6,7 @@ import numpy as np
 
 app = Flask(__name__)
 model = train_model()
-UPLOAD_FOLDER = 'images'
 class_name = ["T-shirts/top", "Trouser", "Pullover", "Dress", "Coat", "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot"]
-
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
 
 def make_prediction(image):
     img = (np.expand_dims(image, 0))
